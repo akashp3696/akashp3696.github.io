@@ -1,0 +1,41 @@
+'use client'
+
+import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
+
+const socials = [
+  { icon: <FaGithub size={18} />, href: 'https://github.com/akashp3696', label: 'GitHub' },
+  { icon: <FaLinkedin size={18} />, href: 'https://www.linkedin.com/in/akash-prajapat-68a30a410/', label: 'LinkedIn' },
+  { icon: <FaWhatsapp size={18} />, href: 'https://wa.me/918718970484', label: 'WhatsApp' },
+]
+
+export default function Footer() {
+  return (
+    <footer className="relative z-10 border-t border-[rgba(255,255,255,0.06)] py-8 px-6">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span className="font-display text-xl font-bold text-white">
+          AP<span className="text-primary">.</span>
+        </span>
+
+        <p className="text-[#475569] text-sm">
+          Designed &amp; Built by{' '}
+          <span className="gradient-text font-semibold">Akash Prajapat</span>
+        </p>
+
+        <div className="flex items-center gap-3">
+          {socials.map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={s.label}
+              className="w-9 h-9 glass flex items-center justify-center text-[#64748B] hover:text-primary-light hover:border-primary/40 transition-all duration-300 hover:-translate-y-1"
+            >
+              {s.icon}
+            </a>
+          ))}
+        </div>
+      </div>
+    </footer>
+  )
+}
