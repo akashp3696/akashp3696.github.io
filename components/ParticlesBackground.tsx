@@ -3,13 +3,8 @@
 import { useEffect, useRef } from 'react'
 
 interface Particle {
-  x: number
-  y: number
-  vx: number
-  vy: number
-  size: number
-  opacity: number
-  color: string
+  x: number; y: number; vx: number; vy: number
+  size: number; opacity: number; color: string
 }
 
 export default function ParticlesBackground() {
@@ -22,25 +17,23 @@ export default function ParticlesBackground() {
     if (!ctx) return
 
     const particles: Particle[] = []
-    const COUNT = 55
+    const COUNT = 45
 
-    const resize = () => {
-      canvas.width  = window.innerWidth
-      canvas.height = window.innerHeight
-    }
+    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight }
     resize()
     window.addEventListener('resize', resize)
 
-    const colors = ['124,58,237', '6,182,212', '168,85,247']
+    // Light mode: softer purple/cyan/gray particles
+    const colors = ['124,58,237', '6,182,212', '148,163,184']
 
     for (let i = 0; i < COUNT; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        size: Math.random() * 1.8 + 0.4,
-        opacity: Math.random() * 0.4 + 0.08,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        size: Math.random() * 1.5 + 0.5,
+        opacity: Math.random() * 0.25 + 0.05,
         color: colors[Math.floor(Math.random() * colors.length)],
       })
     }
@@ -52,8 +45,7 @@ export default function ParticlesBackground() {
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i]
-        p.x += p.vx
-        p.y += p.vy
+        p.x += p.vx; p.y += p.vy
         if (p.x < 0 || p.x > canvas.width)  p.vx *= -1
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1
 
@@ -62,39 +54,25 @@ export default function ParticlesBackground() {
         ctx.fillStyle = `rgba(${p.color},${p.opacity})`
         ctx.fill()
 
-        // Connect nearby particles
         for (let j = i + 1; j < particles.length; j++) {
           const q = particles[j]
-          const dx = p.x - q.x
-          const dy = p.y - q.y
+          const dx = p.x - q.x, dy = p.y - q.y
           const dist = Math.sqrt(dx * dx + dy * dy)
           if (dist < 110) {
             ctx.beginPath()
-            ctx.strokeStyle = `rgba(124,58,237,${0.08 * (1 - dist / 110)})`
+            ctx.strokeStyle = `rgba(124,58,237,${0.05 * (1 - dist / 110)})`
             ctx.lineWidth = 0.5
-            ctx.moveTo(p.x, p.y)
-            ctx.lineTo(q.x, q.y)
+            ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y)
             ctx.stroke()
           }
         }
       }
-
       rafId = requestAnimationFrame(draw)
     }
 
     draw()
-
-    return () => {
-      window.removeEventListener('resize', resize)
-      cancelAnimationFrame(rafId)
-    }
+    return () => { window.removeEventListener('resize', resize); cancelAnimationFrame(rafId) }
   }, [])
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
-      aria-hidden
-    />
-  )
+  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" aria-hidden />
 }

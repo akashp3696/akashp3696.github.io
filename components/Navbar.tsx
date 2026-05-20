@@ -40,23 +40,23 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-[rgba(10,10,20,0.9)] backdrop-blur-xl border-b border-[rgba(255,255,255,0.06)]' : ''
+        scrolled
+          ? 'bg-[rgba(246,248,255,0.92)] backdrop-blur-xl border-b border-[rgba(0,0,0,0.06)] shadow-sm'
+          : ''
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-8">
-        {/* Logo */}
-        <button onClick={() => scrollTo('#home')} className="font-display text-2xl font-bold text-white">
+        <button onClick={() => scrollTo('#home')} className="font-display text-2xl font-bold text-[#0F172A]">
           AP<span className="text-primary">.</span>
         </button>
 
-        {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-8">
           {links.map((link) => (
             <li key={link.href}>
               <button
                 onClick={() => scrollTo(link.href)}
                 className={`text-sm font-medium transition-colors relative group ${
-                  active === link.href.slice(1) ? 'text-white' : 'text-[#94A3B8] hover:text-white'
+                  active === link.href.slice(1) ? 'text-[#0F172A]' : 'text-[#64748B] hover:text-[#0F172A]'
                 }`}
               >
                 {link.label}
@@ -68,24 +68,21 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA button — desktop */}
         <button
           onClick={() => scrollTo('#contact')}
-          className="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-white border border-[rgba(124,58,237,0.5)] hover:bg-[rgba(124,58,237,0.12)] transition-all duration-300"
+          className="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-primary border border-[rgba(124,58,237,0.3)] hover:bg-[rgba(124,58,237,0.06)] transition-all duration-300"
         >
           <FiMail size={15} />
           Let&apos;s Connect
         </button>
 
-        {/* Hamburger */}
         <button className="md:hidden flex flex-col gap-1.5 p-1" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
-          <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
-          <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          <span className={`block h-0.5 w-6 bg-[#0F172A] transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+          <span className={`block h-0.5 w-6 bg-[#0F172A] transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+          <span className={`block h-0.5 w-6 bg-[#0F172A] transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -93,18 +90,18 @@ export default function Navbar() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="md:hidden overflow-hidden bg-[rgba(10,10,20,0.98)] backdrop-blur-xl border-b border-[rgba(255,255,255,0.06)]"
+            className="md:hidden overflow-hidden bg-[rgba(246,248,255,0.98)] backdrop-blur-xl border-b border-[rgba(0,0,0,0.06)]"
           >
             <ul className="flex flex-col px-6 py-4 gap-4">
               {links.map((link) => (
                 <li key={link.href}>
-                  <button onClick={() => scrollTo(link.href)} className="text-[#94A3B8] hover:text-white transition-colors text-sm font-medium">
+                  <button onClick={() => scrollTo(link.href)} className="text-[#64748B] hover:text-[#0F172A] transition-colors text-sm font-medium">
                     {link.label}
                   </button>
                 </li>
               ))}
               <li>
-                <button onClick={() => scrollTo('#contact')} className="flex items-center gap-2 w-full justify-center px-5 py-2.5 rounded-lg text-sm font-semibold text-white border border-[rgba(124,58,237,0.5)] hover:bg-[rgba(124,58,237,0.12)] transition-all">
+                <button onClick={() => scrollTo('#contact')} className="flex items-center gap-2 w-full justify-center px-5 py-2.5 rounded-lg text-sm font-semibold text-primary border border-[rgba(124,58,237,0.3)] hover:bg-[rgba(124,58,237,0.06)] transition-all">
                   <FiMail size={15} /> Let&apos;s Connect
                 </button>
               </li>

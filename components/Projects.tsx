@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, MouseEvent } from 'react'
+import { useRef, useState, MouseEvent } from 'react'
 import { motion } from 'framer-motion'
 import { FiExternalLink } from 'react-icons/fi'
 
@@ -9,108 +9,112 @@ const fadeUp = {
   show:   { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
 }
 
-const projects = [
+interface Project {
+  id: number
+  title: string
+  tag: string
+  badge: string
+  badgeClass: string
+  gradient: string
+  icon: string
+  image: string
+  desc: string
+  tech: string[]
+  liveUrl: string
+}
+
+const projects: Project[] = [
   {
-    id: 1,
-    title: 'Baggi.ae',
-    tag: 'E-Commerce · UAE',
-    badge: 'Live',
-    badgeClass: 'bg-emerald-500',
-    gradient: 'from-blue-600 to-cyan-400',
-    icon: '🛒',
+    id: 1, title: 'Baggi.ae', tag: 'E-Commerce · UAE',
+    badge: 'Live', badgeClass: 'bg-emerald-500',
+    gradient: 'from-blue-600 to-cyan-400', icon: '🛒',
+    image: 'baggi.jpg',
     desc: 'Live e-commerce platform for the UAE market with real-time delivery tracking, multi-vendor support, and Arabic/English bilingual interface. Currently serving customers across Dubai.',
-    tech: ['React.js', 'Node.js', 'MongoDB', 'REST API'],
+    tech: ['React.js', 'Node.js', 'MongoDB', 'Payment Gateway'],
     liveUrl: 'https://baggi.ae',
   },
   {
-    id: 2,
-    title: 'AdlerQA',
-    tag: 'AI · Quality Assurance',
-    badge: 'AI',
-    badgeClass: 'bg-violet-500',
-    gradient: 'from-violet-600 to-purple-400',
-    icon: '🤖',
+    id: 2, title: 'AdlerQA', tag: 'AI · Quality Assurance',
+    badge: 'AI', badgeClass: 'bg-violet-500',
+    gradient: 'from-violet-600 to-purple-400', icon: '🤖',
+    image: 'adlerqa.jpg',
     desc: 'AI-powered test automation platform that intelligently generates, executes, and maintains test cases using machine learning — reducing manual QA effort significantly.',
     tech: ['Python', 'React.js', 'Node.js', 'AI/ML'],
-    liveUrl: '',
+    liveUrl: 'https://adlerqa-website-frontend.vercel.app/',
   },
   {
-    id: 3,
-    title: 'NexGen',
-    tag: 'AI · Business Intelligence',
-    badge: 'AI',
-    badgeClass: 'bg-violet-500',
-    gradient: 'from-emerald-600 to-teal-400',
-    icon: '🧠',
-    desc: 'Next-generation AI platform for business automation with real-time analytics, predictive insights, and intelligent reporting for enterprise clients.',
-    tech: ['React.js', 'Python', 'Node.js', 'MongoDB'],
-    liveUrl: '',
+    id: 3, title: 'Terriberi', tag: 'E-Commerce · Youth Brand',
+    badge: 'Live', badgeClass: 'bg-emerald-500',
+    gradient: 'from-orange-400 to-pink-400', icon: '🍓',
+    image: 'terriberi.jpg',
+    desc: 'Youth entrepreneurship e-commerce platform where young CEOs create and sell their own brands — Skincare, Fragrance & Jewellery editions. Integrated payment gateway for seamless checkout.',
+    tech: ['React.js', 'Node.js', 'MongoDB', 'Payment Gateway'],
+    liveUrl: 'https://www.terriberi.com/',
   },
   {
-    id: 4,
-    title: 'Tripolo',
-    tag: 'Travel · Mobile App',
-    badge: 'App',
-    badgeClass: 'bg-orange-500',
-    gradient: 'from-red-500 to-orange-400',
-    icon: '✈️',
+    id: 4, title: 'Tripolo', tag: 'Travel · Mobile App',
+    badge: 'App', badgeClass: 'bg-orange-500',
+    gradient: 'from-red-500 to-orange-400', icon: '✈️',
+    image: 'tripolo.jpg',
     desc: 'Smart travel planning application with AI-powered itinerary generation, real-time flight tracking, hotel recommendations, and collaborative trip planning features.',
     tech: ['React Native', 'Node.js', 'MongoDB', 'REST API'],
-    liveUrl: '',
+    liveUrl: 'https://www.tripolostays.com/',
   },
   {
-    id: 5,
-    title: 'CineCelebrate',
-    tag: 'Entertainment · Web App',
-    badge: 'Web',
-    badgeClass: 'bg-amber-500',
-    gradient: 'from-amber-500 to-yellow-400',
-    icon: '🎬',
+    id: 5, title: 'CineCelebrate', tag: 'Entertainment · Web App',
+    badge: 'Web', badgeClass: 'bg-amber-500',
+    gradient: 'from-amber-500 to-yellow-400', icon: '🎬',
+    image: 'cinecelebrate.jpg',
     desc: 'Movie event and celebration booking platform connecting cinema lovers with exclusive screening events, premiere tickets, and curated movie experiences.',
-    tech: ['React.js', 'Node.js', 'MySQL', 'REST API'],
-    liveUrl: '',
+    tech: ['React.js', 'Node.js', 'MySQL', 'Payment Gateway'],
+    liveUrl: 'https://cinecelebrate.com/',
   },
   {
-    id: 6,
-    title: 'Conscious Cut',
-    tag: 'Health · Wellness',
-    badge: 'App',
-    badgeClass: 'bg-cyan-600',
-    gradient: 'from-cyan-600 to-teal-400',
-    icon: '🌿',
+    id: 6, title: 'Conscious Cut', tag: 'Health · Wellness',
+    badge: 'App', badgeClass: 'bg-cyan-600',
+    gradient: 'from-cyan-600 to-teal-400', icon: '🌿',
+    image: 'consciouscut.jpg',
     desc: 'Health & wellness platform promoting mindful living through curated content, meal planning tools, and community features for health-conscious individuals.',
     tech: ['React.js', 'Node.js', 'MongoDB', 'Flutter'],
     liveUrl: '',
   },
 ]
 
-function TiltCard({ children }: { children: React.ReactNode }) {
-  const cardRef = useRef<HTMLDivElement>(null)
-
-  const onMove = (e: MouseEvent<HTMLDivElement>) => {
-    const card = cardRef.current
-    if (!card) return
-    const rect = card.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    const cx = rect.width  / 2
-    const cy = rect.height / 2
-    const rotX = ((y - cy) / cy) * -8
-    const rotY = ((x - cx) / cx) *  8
-    card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`
+function ProjectImage({ image, gradient, icon, title }: { image: string; gradient: string; icon: string; title: string }) {
+  const [failed, setFailed] = useState(false)
+  if (failed) {
+    return (
+      <div className={`w-full h-full bg-gradient-to-br ${gradient} flex items-center justify-center text-5xl select-none`}>
+        {icon}
+      </div>
+    )
   }
-
-  const onLeave = () => {
-    if (cardRef.current) cardRef.current.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)'
-  }
-
   return (
-    <div
-      ref={cardRef}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      style={{ transition: 'transform 0.18s ease', willChange: 'transform' }}
-    >
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={`/projects/${image}`}
+      alt={title}
+      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      onError={() => setFailed(true)}
+    />
+  )
+}
+
+function TiltCard({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const onMove = (e: MouseEvent<HTMLDivElement>) => {
+    const el = ref.current; if (!el) return
+    const r = el.getBoundingClientRect()
+    const rotX = (((e.clientY - r.top)  / r.height) - 0.5) * -8
+    const rotY = (((e.clientX - r.left) / r.width)  - 0.5) *  8
+    el.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.015)`
+  }
+  const onLeave = () => {
+    if (ref.current) ref.current.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale(1)'
+  }
+  return (
+    <div ref={ref} onMouseMove={onMove} onMouseLeave={onLeave}
+      style={{ transition: 'transform 0.2s ease', willChange: 'transform', height: '100%' }}>
       {children}
     </div>
   )
@@ -118,73 +122,69 @@ function TiltCard({ children }: { children: React.ReactNode }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative py-32 px-6 z-10">
+    <section id="projects" className="relative py-20 sm:py-32 px-4 sm:px-6 z-10">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
+          viewport={{ once: true, amount: 0.08 }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07 } } }}
         >
-          <motion.div variants={fadeUp} className="text-center mb-16">
+          <motion.div variants={fadeUp} className="text-center mb-10 sm:mb-16">
             <span className="section-tag">What I&apos;ve built</span>
-            <h2 className="section-title">
-              Featured <span className="gradient-text">Projects</span>
-            </h2>
+            <h2 className="section-title">Featured <span className="gradient-text">Projects</span></h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-5">
+          {/* Grid: 1 col mobile → 2 col tablet → 3 col desktop */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {projects.map((p) => (
-              <motion.div key={p.id} variants={fadeUp}>
+              <motion.div key={p.id} variants={fadeUp} className="h-full">
                 <TiltCard>
-                  <div className="glass overflow-hidden flex flex-col group cursor-default h-full"
-                    style={{
-                      transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
-                    }}
+                  <div
+                    className="glass overflow-hidden flex flex-col group cursor-default h-full"
+                    style={{ transition: 'border-color 0.3s ease, box-shadow 0.3s ease' }}
                     onMouseEnter={(e) => {
                       const el = e.currentTarget as HTMLDivElement
-                      el.style.borderColor = 'rgba(124,58,237,0.5)'
-                      el.style.boxShadow = '0 0 30px rgba(124,58,237,0.15), inset 0 0 30px rgba(124,58,237,0.03)'
+                      el.style.borderColor = 'rgba(124,58,237,0.35)'
+                      el.style.boxShadow   = '0 8px 40px rgba(124,58,237,0.12)'
                     }}
                     onMouseLeave={(e) => {
                       const el = e.currentTarget as HTMLDivElement
-                      el.style.borderColor = 'rgba(255,255,255,0.08)'
-                      el.style.boxShadow = 'none'
+                      el.style.borderColor = 'rgba(0,0,0,0.07)'
+                      el.style.boxShadow   = '0 2px 16px rgba(124,58,237,0.05)'
                     }}
                   >
-                    {/* Image area */}
-                    <div className={`relative h-44 bg-gradient-to-br ${p.gradient} flex items-center justify-center text-5xl overflow-hidden`}>
-                      <span className="group-hover:scale-110 transition-transform duration-500 select-none">{p.icon}</span>
-
-                      {/* Shine effect */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                        style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%)' }} />
-
-                      {/* Hover overlay with link */}
-                      {p.liveUrl && (
-                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    {/* Image */}
+                    <div className="relative h-40 sm:h-44 overflow-hidden shrink-0">
+                      <ProjectImage image={p.image} gradient={p.gradient} icon={p.icon} title={p.title} />
+                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        {p.liveUrl ? (
                           <a href={p.liveUrl} target="_blank" rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
                             className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-accent transition-colors">
                             <FiExternalLink size={16} />
                           </a>
-                        </div>
-                      )}
-
+                        ) : (
+                          <span className="text-white/80 text-xs font-medium px-3 py-1.5 rounded-full backdrop-blur-sm"
+                            style={{ background: 'rgba(0,0,0,0.35)' }}>
+                            Private Project
+                          </span>
+                        )}
+                      </div>
                       <span className={`absolute top-3 right-3 ${p.badgeClass} text-white text-xs font-bold px-2.5 py-1 rounded-full`}>
                         {p.badge}
                       </span>
                     </div>
 
                     {/* Content */}
-                    <div className="p-5 flex flex-col flex-1">
+                    <div className="p-4 sm:p-5 flex flex-col flex-1">
                       <p className="text-accent text-xs font-semibold uppercase tracking-wider mb-1">{p.tag}</p>
-                      <h3 className="font-display font-bold text-white text-lg mb-2">{p.title}</h3>
-                      <p className="text-[#94A3B8] text-sm leading-relaxed mb-4 flex-1">{p.desc}</p>
+                      <h3 className="font-display font-bold text-[#0F172A] text-base sm:text-lg mb-2">{p.title}</h3>
+                      <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed mb-3 flex-1">{p.desc}</p>
                       <div className="flex flex-wrap gap-1.5">
                         {p.tech.map((t) => (
                           <span key={t} className="text-xs px-2 py-0.5 rounded text-accent font-medium"
-                            style={{ background: 'rgba(6,182,212,0.1)', border: '1px solid rgba(6,182,212,0.25)' }}>
+                            style={{ background: 'rgba(6,182,212,0.08)', border: '1px solid rgba(6,182,212,0.2)' }}>
                             {t}
                           </span>
                         ))}

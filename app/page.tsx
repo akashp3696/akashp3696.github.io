@@ -14,7 +14,7 @@ import SkillMarquee from '@/components/SkillMarquee'
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-dark text-[#E2E8F0] overflow-x-hidden">
+    <main className="relative min-h-screen overflow-x-hidden" style={{ background: '#F6F8FF', color: '#0F172A' }}>
       <LoadingScreen />
       <CursorGlow />
       <ScrollProgress />
