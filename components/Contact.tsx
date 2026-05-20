@@ -6,9 +6,9 @@ import emailjs from '@emailjs/browser'
 import { FiMail, FiSend } from 'react-icons/fi'
 import { FaWhatsapp, FaLinkedin, FaGithub } from 'react-icons/fa'
 
-const EMAIL_SERVICE_ID  = 'YOUR_EMAILJS_SERVICE_ID'
-const EMAIL_TEMPLATE_ID = 'YOUR_EMAILJS_TEMPLATE_ID'
-const EMAIL_PUBLIC_KEY  = 'YOUR_EMAILJS_PUBLIC_KEY'
+const EMAIL_SERVICE_ID  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID  ?? ''
+const EMAIL_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? ''
+const EMAIL_PUBLIC_KEY  = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY  ?? ''
 
 const CONTACT_EMAIL   = 'akashprajapat006@gmail.com'
 const WHATSAPP_NUMBER = '918718970484'
@@ -143,6 +143,13 @@ export default function Contact() {
                       />
                     ))}
                   </div>
+                  <input name="whatsapp_number" type="tel"
+                    placeholder="WhatsApp Number (with country code, e.g. +91 98765 43210)"
+                    className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200 placeholder-[#94A3B8]"
+                    style={inputBase}
+                    onFocus={(e) => { e.target.style.borderColor = '#25D366'; e.target.style.background = 'rgba(37,211,102,0.04)' }}
+                    onBlur={(e)  => { e.target.style.borderColor = 'rgba(0,0,0,0.08)'; e.target.style.background = 'rgba(124,58,237,0.03)' }}
+                  />
                   <input name="subject" type="text" placeholder="Subject"
                     className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200 placeholder-[#94A3B8]"
                     style={inputBase}
