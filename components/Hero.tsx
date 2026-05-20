@@ -220,11 +220,11 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 px-5 py-2.5 rounded-full text-emerald-600 font-medium text-sm"
+              {/* <div className="flex items-center gap-2 px-5 py-2.5 rounded-full text-emerald-600 font-medium text-sm"
                 style={{ background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.2)' }}>
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse-green" />
                 Available for Freelance
-              </div>
+              </div> */}
 
               {/* Floating badges */}
               <div className="absolute -left-10 top-1/2 -translate-y-1/2">
