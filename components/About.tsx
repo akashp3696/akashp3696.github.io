@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { FiMapPin, FiBriefcase, FiBook, FiGlobe, FiArrowRight } from 'react-icons/fi'
-import { FaBrain, FaMobileAlt, FaCode } from 'react-icons/fa'
+import { FaBrain, FaCode } from 'react-icons/fa'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -18,10 +18,9 @@ const fadeRight = {
 }
 
 const cards = [
-  { icon: <FiGlobe size={24} />, title: 'International Projects', desc: 'Delivered live projects in UAE & global market', color: '#7C3AED' },
-  { icon: <FaBrain size={24} />, title: 'AI Integration', desc: 'Building AI‑powered applications & automation', color: '#06B6D4' },
-  { icon: <FaMobileAlt size={24} />, title: 'Mobile Development', desc: 'Cross‑platform apps with Flutter & React Native', color: '#A855F7' },
-  { icon: <FaCode size={24} />, title: 'Full Stack', desc: 'End‑to‑end product from DB to UI', color: '#22D3EE' },
+  { icon: <FiGlobe size={24} />, title: 'International Projects', desc: 'Delivered live platforms for clients in UAE & global markets', color: '#7C3AED' },
+  { icon: <FaBrain size={24} />, title: 'REST API Development', desc: 'Designing secure, scalable APIs that power real products', color: '#06B6D4' },
+  { icon: <FaCode size={24} />, title: 'MERN Full Stack', desc: 'End‑to‑end products — MongoDB, Express, React & Node', color: '#22D3EE' },
 ]
 
 const details = [
@@ -62,9 +61,9 @@ export default function About() {
               variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
             >
               {[
-                <>I&apos;m a passionate <strong className="text-[#0F172A]">Full Stack Developer</strong> with expertise in building end‑to‑end web and mobile applications. I love turning complex problems into elegant, performant solutions.</>,
-                <>From <strong className="text-[#0F172A]">live Dubai‑based platforms</strong> to <strong className="text-[#0F172A]">AI‑powered automation tools</strong>, I&apos;ve delivered scalable products across multiple industries — e‑commerce, travel, entertainment &amp; wellness.</>,
-                <>My versatility spans web, mobile, and AI integration — making me a one‑stop solution for modern product development.</>,
+                <>I&apos;m a passionate <strong className="text-[#0F172A]">MERN Stack Developer</strong> with expertise in building end‑to‑end web applications. I love turning complex problems into elegant, performant solutions.</>,
+                <>From <strong className="text-[#0F172A]">live Dubai‑based platforms</strong> to homegrown e‑commerce &amp; service portals, I&apos;ve delivered scalable products across multiple industries — e‑commerce, travel, entertainment &amp; wellness.</>,
+                <>My focus is squarely on <strong className="text-[#0F172A]">MongoDB, Express.js, React.js &amp; Node.js</strong> — making me a reliable one‑stop solution for modern web product development.</>,
               ].map((para, i) => (
                 <motion.p key={i} variants={fadeLeft}
                   className="text-[#475569] text-sm sm:text-base leading-relaxed mb-4">
@@ -99,25 +98,28 @@ export default function About() {
               whileInView="show"
               viewport={{ once: true, amount: 0.15 }}
               variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
-              className="grid grid-cols-2 gap-3 sm:gap-4"
+              className="flex flex-col gap-3 sm:gap-4"
             >
               {cards.map((c) => (
                 <motion.div
                   key={c.title}
                   variants={fadeRight}
-                  whileHover={{ y: -6, boxShadow: `0 16px 40px ${c.color}22` }}
-                  className="glass p-4 sm:p-6 cursor-default"
-                  style={{ transition: 'box-shadow 0.3s ease', borderRadius: 16 }}
+                  whileHover={{ x: 6, boxShadow: `0 16px 40px ${c.color}22` }}
+                  className="glass p-4 sm:p-5 flex items-center gap-4 cursor-default"
+                  style={{ transition: 'box-shadow 0.3s ease, transform 0.3s ease', borderRadius: 16 }}
                 >
                   <motion.div
-                    whileHover={{ scale: 1.2, rotate: 5 }}
+                    whileHover={{ scale: 1.15, rotate: 5 }}
                     transition={{ type: 'spring', stiffness: 300 }}
-                    className="mb-3 inline-block gradient-text"
+                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 gradient-text"
+                    style={{ background: `${c.color}14` }}
                   >
                     {c.icon}
                   </motion.div>
-                  <h4 className="font-display font-semibold text-xs sm:text-sm text-[#0F172A] mb-1">{c.title}</h4>
-                  <p className="text-[#94A3B8] text-xs leading-relaxed">{c.desc}</p>
+                  <div className="min-w-0">
+                    <h4 className="font-display font-semibold text-sm sm:text-base text-[#0F172A] mb-0.5">{c.title}</h4>
+                    <p className="text-[#94A3B8] text-xs sm:text-sm leading-relaxed">{c.desc}</p>
+                  </div>
                 </motion.div>
               ))}
             </motion.div>

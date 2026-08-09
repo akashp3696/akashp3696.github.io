@@ -10,9 +10,9 @@ const EMAIL_SERVICE_ID  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID  ?? ''
 const EMAIL_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? ''
 const EMAIL_PUBLIC_KEY  = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY  ?? ''
 
-const CONTACT_EMAIL   = 'akashprajapat006@gmail.com'
+const CONTACT_EMAIL   = 'akashprajapat369@gmail.com'
 const WHATSAPP_NUMBER = '918718970484'
-const LINKEDIN_URL    = 'https://www.linkedin.com/in/akash-prajapat-68a30a410/'
+const LINKEDIN_URL    = 'https://www.linkedin.com/in/akash-prajapat-09213824b/'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -25,7 +25,7 @@ const contactItems = [
   { icon: <FiMail size={18} />, label: 'Email', value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}`, color: '#7C3AED' },
   { icon: <FaWhatsapp size={18} />, label: 'WhatsApp', value: '+91 87189 70484', href: `https://wa.me/${WHATSAPP_NUMBER}`, color: '#25D366' },
   { icon: <FaLinkedin size={18} />, label: 'LinkedIn', value: 'akash-prajapat', href: LINKEDIN_URL, color: '#0A66C2' },
-  { icon: <FaGithub size={18} />, label: 'GitHub', value: 'github.com/akashp3696', href: 'https://github.com/akashp3696', color: '#0F172A' },
+  { icon: <FaGithub size={18} />, label: 'GitHub', value: 'github.com/akashp369', href: 'https://github.com/akashp369', color: '#0F172A' },
 ]
 
 export default function Contact() {
@@ -86,8 +86,8 @@ export default function Contact() {
                 Ready to start a project?
               </motion.h3>
               <motion.p variants={fadeLeft} className="text-[#64748B] text-sm sm:text-base leading-relaxed mb-6">
-                I&apos;m open to freelance opportunities worldwide. Whether you need a full web
-                application, mobile app, or AI integration — let&apos;s make it happen.
+                I&apos;m open to full‑time &amp; freelance opportunities worldwide. Whether you need
+                a scalable web application built with the MERN stack — let&apos;s make it happen.
               </motion.p>
 
               <div className="flex flex-col gap-2.5">

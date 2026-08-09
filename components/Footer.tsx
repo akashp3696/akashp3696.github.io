@@ -3,8 +3,8 @@
 import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
 
 const socials = [
-  { icon: <FaGithub size={18} />, href: 'https://github.com/akashp3696', label: 'GitHub' },
-  { icon: <FaLinkedin size={18} />, href: 'https://www.linkedin.com/in/akash-prajapat-68a30a410/', label: 'LinkedIn' },
+  { icon: <FaGithub size={18} />, href: 'https://github.com/akashp369', label: 'GitHub' },
+  { icon: <FaLinkedin size={18} />, href: 'https://www.linkedin.com/in/akash-prajapat-09213824b/', label: 'LinkedIn' },
   { icon: <FaWhatsapp size={18} />, href: 'https://wa.me/918718970484', label: 'WhatsApp' },
 ]
 

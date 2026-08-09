@@ -2,22 +2,21 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Akash Prajapat | Full Stack Developer',
+  title: 'Akash Prajapat | MERN Stack Developer',
   description:
-    'Full Stack Developer specializing in React, Node.js, Flutter, and AI integration. Available for freelancing worldwide.',
+    'Full Stack Developer specializing in the MERN stack — MongoDB, Express.js, React.js & Node.js.',
   keywords: [
     'Full Stack Developer',
+    'MERN Stack Developer',
     'React Developer',
     'Node.js',
-    'Flutter',
-    'Freelance Developer India',
-    'Mobile App Developer',
-    'AI Developer',
+    'MongoDB',
+    'Express.js',
   ],
   authors: [{ name: 'Akash Prajapat' }],
   openGraph: {
-    title: 'Akash Prajapat | Full Stack Developer',
-    description: 'Building scalable web & mobile apps. Available for freelance.',
+    title: 'Akash Prajapat | MERN Stack Developer',
+    description: 'Building scalable web apps with the MERN stack.',
     type: 'website',
   },
 }

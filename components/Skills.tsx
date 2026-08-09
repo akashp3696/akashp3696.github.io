@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FiCode, FiServer, FiSmartphone, FiDatabase } from 'react-icons/fi'
+import { FiCode, FiServer, FiDatabase } from 'react-icons/fi'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -12,21 +12,23 @@ const pillAnim = {
   show:   { opacity: 1, scale: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 20 } },
 }
 
-const categories = [
+interface SkillCategory {
+  icon: React.ReactNode
+  title: string
+  skills: string[]
+  accent: string
+}
+
+const categories: SkillCategory[] = [
   {
     icon: <FiCode size={20} />, title: 'Frontend',
-    skills: ['React.js', 'JavaScript', 'HTML / CSS', 'React Native'],
+    skills: ['React.js', 'JavaScript', 'TypeScript', 'HTML / CSS'],
     accent: 'rgba(124,58,237,0.08)',
   },
   {
     icon: <FiServer size={20} />, title: 'Backend',
-    skills: ['Node.js', 'Python', 'Java', 'Spring Boot', 'REST API'],
+    skills: ['Node.js', 'Express.js', 'Python', 'Java', 'Spring Boot', 'REST API'],
     accent: 'rgba(6,182,212,0.08)',
-  },
-  {
-    icon: <FiSmartphone size={20} />, title: 'Mobile',
-    skills: ['Flutter', 'React Native', 'App Development', 'Mobile App Dev.'],
-    accent: 'rgba(168,85,247,0.08)',
   },
   {
     icon: <FiDatabase size={20} />, title: 'Database & More',
@@ -56,7 +58,7 @@ export default function Skills() {
             <h2 className="section-title">My <span className="gradient-text">Skills</span></h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
             {categories.map((cat, ci) => (
               <motion.div
                 key={cat.title}
