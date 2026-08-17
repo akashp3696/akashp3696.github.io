@@ -8,7 +8,8 @@ const ROLES = [
   'Full Stack Developer',
   'React.js Developer',
   'Node.js Developer',
-  'MERN Stack Developer',
+  'Java (Spring Boot) Developer',
+  'React Native Developer',
 ]
 
 function useTypewriter(words: string[]) {
@@ -81,9 +82,9 @@ export default function Hero() {
     return () => observer.disconnect()
   }, [])
 
-  const projects = useCounter(20, countersOn)
+  const projects = useCounter(30, countersOn)
   const clients  = useCounter(15, countersOn)
-  const years    = useCounter(3,  countersOn)
+  const years    = useCounter(5,  countersOn)
 
   const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } }
   const item    = { hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } } }
@@ -128,7 +129,7 @@ export default function Hero() {
               <span className="animate-blink text-primary">|</span>
             </motion.div>
             <motion.p variants={item} className="text-[#64748B] text-sm leading-relaxed mb-6 px-2">
-              Building scalable web apps with the MERN stack — available worldwide.
+              Building scalable web &amp; mobile apps with Java, MERN &amp; React Native — available worldwide.
             </motion.p>
             <motion.div variants={item} className="flex gap-3 justify-center mb-8 flex-wrap">
               <button onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })} className="btn-primary !text-sm !px-5 !py-2.5">
@@ -172,8 +173,8 @@ export default function Hero() {
               <span className="animate-blink text-primary ml-0.5">|</span>
             </motion.div>
             <motion.p variants={item} className="text-[#64748B] text-base leading-relaxed max-w-lg mb-8">
-              Building scalable web applications with the MERN stack.
-              Specialized in end‑to‑end product development — available worldwide for full‑time &amp; freelance opportunities.
+              Building scalable, high‑performance web &amp; mobile apps using Java (Spring Boot), the MERN stack, and React Native / Flutter.
+              Delivered 30+ projects for 15+ clients — available worldwide for full‑time &amp; freelance opportunities.
             </motion.p>
             <motion.div variants={item} className="flex flex-wrap gap-4 mb-12">
               <button onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })} className="btn-primary">
@@ -231,11 +232,11 @@ export default function Hero() {
               </div>
               <div className="absolute -right-10 top-1/3">
                 <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 4.5, ease: 'easeInOut', delay: 0.5 }}
-                  className="glass px-3 py-2 text-xs font-semibold text-accent shadow-lg">🟢 Node.js</motion.div>
+                  className="glass px-3 py-2 text-xs font-semibold text-accent shadow-lg">☕ Java Spring Boot</motion.div>
               </div>
               <div className="absolute -right-8 top-2/3">
                 <motion.div animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut', delay: 1 }}
-                  className="glass px-3 py-2 text-xs font-semibold text-[#65A30D] shadow-lg">🍃 Express.js</motion.div>
+                  className="glass px-3 py-2 text-xs font-semibold text-[#65A30D] shadow-lg">📱 React Native</motion.div>
               </div>
             </div>
           </motion.div>

@@ -86,8 +86,9 @@ export default function Contact() {
                 Ready to start a project?
               </motion.h3>
               <motion.p variants={fadeLeft} className="text-[#64748B] text-sm sm:text-base leading-relaxed mb-6">
-                I&apos;m open to full‑time &amp; freelance opportunities worldwide. Whether you need
-                a scalable web application built with the MERN stack — let&apos;s make it happen.
+                I&apos;m open to full‑time &amp; freelance opportunities worldwide. Whether it&apos;s a
+                quick fix or a full product build with Java, MERN, or React Native — let&apos;s talk about
+                what you&apos;re trying to build.
               </motion.p>
 
               <div className="flex flex-col gap-2.5">

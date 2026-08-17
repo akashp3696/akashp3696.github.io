@@ -1,9 +1,10 @@
 'use client'
 
 const techStack = [
-  'React.js', 'Node.js', 'Express.js', 'MongoDB', 'TypeScript', 'JavaScript',
-  'Python', 'MySQL', 'Java', 'Spring Boot', 'REST API', 'HTML / CSS',
-  'Full Stack',
+  'React.js', 'Node.js', 'Express.js', 'MongoDB', 'Java', 'Spring Boot',
+  'React Native', 'Flutter', 'TypeScript', 'JavaScript', 'Python', 'MySQL',
+  'PostgreSQL', 'Redis', 'AWS', 'Stripe', 'JWT', 'REST API', 'WebSocket',
+  'HTML / CSS', 'Full Stack',
 ]
 
 export default function SkillMarquee() {

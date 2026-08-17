@@ -1,8 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FiMapPin, FiBriefcase, FiBook, FiGlobe, FiArrowRight } from 'react-icons/fi'
-import { FaBrain, FaCode } from 'react-icons/fa'
+import { FiMapPin, FiBriefcase, FiBook, FiGlobe, FiArrowRight, FiZap } from 'react-icons/fi'
+import { FaBrain, FaCode, FaMobileAlt } from 'react-icons/fa'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -18,16 +18,19 @@ const fadeRight = {
 }
 
 const cards = [
-  { icon: <FiGlobe size={24} />, title: 'International Projects', desc: 'Delivered live platforms for clients in UAE & global markets', color: '#7C3AED' },
-  { icon: <FaBrain size={24} />, title: 'REST API Development', desc: 'Designing secure, scalable APIs that power real products', color: '#06B6D4' },
-  { icon: <FaCode size={24} />, title: 'MERN Full Stack', desc: 'End‑to‑end products — MongoDB, Express, React & Node', color: '#22D3EE' },
+  { icon: <FiGlobe size={24} />, title: 'International Projects', desc: '30+ projects for 15+ clients, 10+ live in UAE & global markets', color: '#7C3AED' },
+  { icon: <FaCode size={24} />, title: 'Full Stack Development', desc: 'Java (Spring Boot), Node.js & React — scalable, high‑performance apps', color: '#06B6D4' },
+  { icon: <FaMobileAlt size={24} />, title: 'Mobile Development', desc: '9 React Native + 3 Flutter apps shipped', color: '#A855F7' },
+  { icon: <FiZap size={24} />, title: 'Performance & Scale', desc: 'WebSocket 500+ concurrent connections, 90% payload reduction', color: '#22D3EE' },
 ]
 
 const details = [
   { icon: <FiMapPin size={13} />, text: 'India (Available Worldwide)' },
-  { icon: <FiBriefcase size={13} />, text: 'Open to Remote & Contract' },
+  { icon: <FiBriefcase size={13} />, text: 'Open to Remote, Contract & Freelance' },
   { icon: <FiBook size={13} />, text: 'B.Tech — Computer Science' },
   { icon: <FiGlobe size={13} />, text: 'English & Hindi' },
+  { icon: <FaBrain size={13} />, text: '30+ Projects · 15+ Clients' },
+  { icon: <FiZap size={13} />, text: '10+ Live Production Apps' },
 ]
 
 export default function About() {
@@ -61,9 +64,9 @@ export default function About() {
               variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
             >
               {[
-                <>I&apos;m a passionate <strong className="text-[#0F172A]">MERN Stack Developer</strong> with expertise in building end‑to‑end web applications. I love turning complex problems into elegant, performant solutions.</>,
-                <>From <strong className="text-[#0F172A]">live Dubai‑based platforms</strong> to homegrown e‑commerce &amp; service portals, I&apos;ve delivered scalable products across multiple industries — e‑commerce, travel, entertainment &amp; wellness.</>,
-                <>My focus is squarely on <strong className="text-[#0F172A]">MongoDB, Express.js, React.js &amp; Node.js</strong> — making me a reliable one‑stop solution for modern web product development.</>,
+                <>I&apos;m a passionate <strong className="text-[#0F172A]">Full Stack Developer</strong> with <strong className="text-[#0F172A]">5+ years of experience in React</strong> and <strong className="text-[#0F172A]">3+ years specializing in backend development &amp; performance optimization</strong>. I build scalable, high‑performance web and mobile applications using <strong className="text-[#0F172A]">Java (Spring Boot)</strong>, the <strong className="text-[#0F172A]">MERN stack</strong>, and <strong className="text-[#0F172A]">React Native / Flutter</strong> for mobile.</>,
+                <>I&apos;ve delivered <strong className="text-[#0F172A]">30+ projects for 15+ clients</strong>, including <strong className="text-[#0F172A]">10+ live, production platforms</strong> serving international markets — a service platform for the UAE market, an AI‑powered test automation tool, and a real‑time travel‑tech app. My work spans e‑commerce, travel, entertainment, wellness, and internal‑use SaaS tools built for business operations.</>,
+                <>I also use <strong className="text-[#0F172A]">AI‑assisted tools</strong> like GitHub Copilot and Cursor to move faster while keeping code clean — and I focus on clear communication and reliable delivery, whether it&apos;s a quick fix or a full product build.</>,
               ].map((para, i) => (
                 <motion.p key={i} variants={fadeLeft}
                   className="text-[#475569] text-sm sm:text-base leading-relaxed mb-4">
